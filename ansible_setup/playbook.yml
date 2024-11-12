@@ -1,0 +1,76 @@
+---
+- hosts: local
+  become: true
+  tasks:
+    - name: Installing necessary packages
+      apt:
+        name:
+          - fail2ban
+          - nftables
+          - iptables
+          - ssh
+          - openssl
+        state: present
+        update_cache: yes
+
+    - name: Configure nftables
+      block:
+        - name: Copying nftables config file
+          ansible.builtin.copy:
+            src: ./nftables.conf
+            dest: /etc/nftables.conf
+            mode: "620"
+
+        - name: Starting nftables
+          ansible.builtin.service:
+            name: nftables
+            state: restarted
+            enabled: true
+
+    - name: Configure fail2ban
+      block:
+        - name: Copying fail2ban/fail2ban.local
+          ansible.builtin.copy:
+            src: ./fail2ban.local
+            dest: /etc/fail2ban/fail2ban.local
+            mode: "620"
+
+        - name: Copying fail2ban/jail.local
+          ansible.builtin.copy:
+            src: ./jail.local
+            dest: /etc/fail2ban/jail.local
+            mode: "620"
+
+        - name: Starting Fail2Ban
+          ansible.builtin.service:
+            name: fail2ban
+            state: restarted
+            enabled: true
+
+    - name: Configure SSH settings on server
+      block:
+        - name: Copying sshd config (change port number for SSH)
+          ansible.builtin.copy:
+            src: ./sshd_config
+            dest: /etc/ssh/sshd_config
+            mode: "620"
+
+        - name: Ensure SSH password authentication is disabled
+          lineinfile:
+            path: /etc/ssh/sshd_config
+            regexp: "^PasswordAuthentication"
+            line: "PasswordAuthentication no"
+            state: present
+
+        - name: Ensure SSH public key authentication is enabled
+          lineinfile:
+            path: /etc/ssh/sshd_config
+            regexp: "^PubkeyAuthentication"
+            line: "PubkeyAuthentication yes"
+            state: present
+
+        - name: Restart SSH service to apply changes
+          ansible.builtin.service:
+            name: sshd
+            state: restarted
+            enabled: true
