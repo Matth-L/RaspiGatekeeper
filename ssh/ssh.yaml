@@ -3,6 +3,10 @@
   hosts: all
   become: yes
   tasks:
+    - name : Install OpenSSH server
+      ansible.builtin.package:
+        name: openssh-server
+        state: present
     - name: Copying sshd config (change port number for SSH)
       ansible.builtin.copy:
         src: ./sshd_config

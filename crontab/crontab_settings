@@ -1,0 +1,2 @@
+0 8 * * 7 rkhunter --update && rkhunter --check
+0 9 * * 7 lynis audit system

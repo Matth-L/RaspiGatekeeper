@@ -1,0 +1,18 @@
+---
+- name: Configure fail2ban
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install crontab
+      ansible.builtin.apt:
+        name: cron
+        state: present
+
+    - name: Add new crontab command
+      command: crontab -e ./crontab_settings
+
+    - name: Start crontab
+      ansible.builtin.service:
+        name: cron
+        state: started
+        enabled: yes

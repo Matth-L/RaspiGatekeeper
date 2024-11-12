@@ -3,6 +3,11 @@
   hosts: all
   become: yes
   tasks:
+    - name: Install fail2ban
+      ansible.builtin.apt:
+        name: fail2ban
+        state: present
+
     - name: Copying fail2ban/fail2ban.local
       ansible.builtin.copy:
         src: ./fail2ban.local

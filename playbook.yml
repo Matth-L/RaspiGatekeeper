@@ -1,16 +1,7 @@
 ---
-- hosts: local
-  become: true
-  tasks:
-    - name: Installing necessary packages
-      apt:
-        name:
-          - fail2ban
-          - nftables
-          - ssh
-          - openssl
-        state: present
-        update_cache: yes
-
+- import_playbook: ./ssh/ssh.yaml
 - import_playbook: ./fail2ban/fail2ban.yaml
 - import_playbook: ./nftables/nftables.yaml
+- import_playbook: ./lynis/lynis.yaml
+- import_playbook: ./rkhunter/rkhunter.yaml
+- import_playbook: ./crontab/crontab.yaml

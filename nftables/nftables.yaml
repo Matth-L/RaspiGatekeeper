@@ -3,6 +3,11 @@
   hosts: all
   become: yes
   tasks:
+    - name: Install nftables
+      ansible.builtin.package:
+        name: nftables
+        state: present
+
     - name: Copying nftables config file
       ansible.builtin.copy:
         src: ./nftables.conf
