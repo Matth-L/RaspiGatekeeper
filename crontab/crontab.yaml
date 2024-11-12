@@ -1,5 +1,5 @@
 ---
-- name: Configure fail2ban
+- name: Configure crontab
   hosts: all
   become: yes
   tasks:
