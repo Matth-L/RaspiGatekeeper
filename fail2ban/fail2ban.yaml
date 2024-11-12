@@ -1,0 +1,22 @@
+---
+- name: Configure fail2ban
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copying fail2ban/fail2ban.local
+      ansible.builtin.copy:
+        src: ./fail2ban.local
+        dest: /etc/fail2ban/fail2ban.local
+        mode: "620"
+
+    - name: Copying fail2ban/jail.local
+      ansible.builtin.copy:
+        src: ./jail.local
+        dest: /etc/fail2ban/jail.local
+        mode: "620"
+
+    - name: Starting Fail2Ban
+      ansible.builtin.service:
+        name: fail2ban
+        state: restarted
+        enabled: true

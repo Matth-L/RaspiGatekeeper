@@ -1,0 +1,30 @@
+---
+- name: Configure SSH settings on server
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copying sshd config (change port number for SSH)
+      ansible.builtin.copy:
+        src: ./sshd_config
+        dest: /etc/ssh/sshd_config
+        mode: "620"
+
+    - name: Ensure SSH password authentication is disabled
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "^PasswordAuthentication"
+        line: "PasswordAuthentication no"
+        state: present
+
+    - name: Ensure SSH public key authentication is enabled
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "^PubkeyAuthentication"
+        line: "PubkeyAuthentication yes"
+        state: present
+
+    - name: Restart SSH service to apply changes
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
+        enabled: true

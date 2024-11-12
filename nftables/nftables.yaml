@@ -1,0 +1,16 @@
+---
+- name: Configure nftables
+  hosts: all
+  become: yes
+  tasks:
+    - name: Copying nftables config file
+      ansible.builtin.copy:
+        src: ./nftables.conf
+        dest: /etc/nftables.conf
+        mode: "620"
+
+    - name: Starting nftables
+      ansible.builtin.service:
+        name: nftables
+        state: restarted
+        enabled: true
