@@ -7,17 +7,3 @@
         name: lynis
         state: present
         update_cache: yes
-
-    - name: Lynis upate
-      command: lynis update
-
-    - name: Run lynis security audit
-      command: lynis audit system
-      register: lynis_audit_output
-      changed_when: false
-
-    - name: Save lynis audit results to a file
-      copy:
-        content: "{{ lynis_audit_output.stdout }}"
-        dest: /var/log/lynis_audit_report.txt
-        mode: "0644"

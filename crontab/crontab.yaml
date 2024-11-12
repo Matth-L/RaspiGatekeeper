@@ -11,18 +11,8 @@
     - name: Add new crontab command
       command: crontab -e ./crontab_settings
 
-    - name: Start crontab
-      ansible.builtin.service:
+    - name: Crontab is enabled and started
+      ansible.builtin.systemd:
         name: cron
         state: started
-        enabled: yes
-    
-    - name: Enable crontab service to start on boot
-      ansible.builtin.service:
-        name: cron
-        enabled: yes
-    
-    - name: Restart crontab service to apply changes
-      ansible.builtin.service:
-        name: cron
-        state: restarted
+        enabled: true

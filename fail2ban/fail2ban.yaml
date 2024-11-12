@@ -20,18 +20,8 @@
         dest: /etc/fail2ban/jail.local
         mode: "620"
 
-    - name: Starting Fail2Ban
-      ansible.builtin.service:
+    - name: Fail2Ban is enabled and started
+      ansible.builtin.systemd:
         name: fail2ban
         state: started
         enabled: true
-
-    - name: Enable Fail2Ban service to start on boot
-      ansible.builtin.service:
-        name: fail2ban
-        enabled: true
-
-    - name: Restart Fail2Ban service to apply changes
-      ansible.builtin.service:
-        name: fail2ban
-        state: restarted

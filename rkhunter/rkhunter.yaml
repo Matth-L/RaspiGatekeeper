@@ -7,6 +7,3 @@
         name: rkhunter
         state: present
         update_cache: yes
-
-    - name: Update rkhunter
-      command: rkhunter --update
