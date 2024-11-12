@@ -27,8 +27,17 @@
         line: "PubkeyAuthentication yes"
         state: present
 
+    - name: Start SSH service if not running
+      ansible.builtin.service:
+        name: ssh
+        state: started
+
+    - name: Enable SSH service to start on boot
+      ansible.builtin.service:
+        name: ssh
+        enabled: true
+
     - name: Restart SSH service to apply changes
       ansible.builtin.service:
-        name: sshd
+        name: ssh
         state: restarted
-        enabled: true

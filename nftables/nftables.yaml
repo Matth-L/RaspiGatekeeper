@@ -17,5 +17,15 @@
     - name: Starting nftables
       ansible.builtin.service:
         name: nftables
-        state: restarted
+        state: started
         enabled: true
+
+    - name: Enable nftables service to start on boot
+      ansible.builtin.service:
+        name: nftables
+        enabled: true
+    
+    - name: Restart nftables service to apply changes
+      ansible.builtin.service:
+        name: nftables
+        state: restarted

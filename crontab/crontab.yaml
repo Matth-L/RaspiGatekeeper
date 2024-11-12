@@ -16,3 +16,13 @@
         name: cron
         state: started
         enabled: yes
+    
+    - name: Enable crontab service to start on boot
+      ansible.builtin.service:
+        name: cron
+        enabled: yes
+    
+    - name: Restart crontab service to apply changes
+      ansible.builtin.service:
+        name: cron
+        state: restarted
