@@ -1,2 +1,0 @@
-0 8 * * 7 rkhunter -c
-0 9 * * 7 lynis audit system

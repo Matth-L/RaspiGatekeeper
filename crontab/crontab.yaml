@@ -8,11 +8,22 @@
         name: cron
         state: present
 
-    - name: Add new crontab command
-      command: crontab -e ./crontab_settings
-
     - name: Crontab is enabled and started
       ansible.builtin.systemd:
         name: cron
         state: started
         enabled: true
+
+    - name: Every Saturday at 4am, run lynis audit system
+      ansible.builtin.cron:
+        name: "lynis"
+        day: "6"
+        hour: "4"
+        job: "lynis audit system"
+
+    - name: Every Saturday at 5am, run rkhunter
+      ansible.builtin.cron:
+        name: "rkhunter"
+        day: "6"
+        hour: "5"
+        job: "rkhunter -c"
