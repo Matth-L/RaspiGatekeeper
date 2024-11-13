@@ -12,8 +12,6 @@
 Include /etc/ssh/sshd_config.d/*.conf
 
 
-# ADDED 
-Port 2222
 
 #AddressFamily any
 #ListenAddress 0.0.0.0
@@ -89,10 +87,6 @@ UsePAM yes
 
 #AllowAgentForwarding yes
 
-
-# ADDED
-AllowTcpForwarding yes
-
 #GatewayPorts no
 X11Forwarding yes
 X11DisplayOffset 10
@@ -110,8 +104,6 @@ PrintMotd no
 #MaxStartups 10:30:100
 
 
-# ADDED
-PermitTunnel no
 
 
 #ChrootDirectory none
@@ -132,3 +124,12 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+
+
+# MODIFIED
+
+AllowTcpForwarding yes
+PermitTunnel no
+Port 2222
+PubkeyAuthentication yes
+PasswordAuthentication no
