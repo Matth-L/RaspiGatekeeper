@@ -41,20 +41,10 @@
       become_user: "{{ user }}"
 
     - name: Sourcing
-      command: source /home/{{ user }}/cowrie/cowrie-env/bin/activate
+      command: bash -c "source /home/{{ user }}/cowrie/cowrie-env/bin/activate && python -m pip install --upgrade pip && python -m pip install --upgrade -r requirements.txt"
       become_user: "{{ user }}"
 
-    - name: Upgrading pip
-      pip:
-        name: pip
-        state: latest
-      become_user: "{{ user }}"
-
-    - name: Installing pip requirements for IDS
-      command: python -m pip install --upgrade -r /home/{{ user }}/cowrie/requirements.txt
-      become_user: "{{ user }}"
-
-    - name: Leavind the virtual environment
+    - name: Leaving the virtual environment
       command: deactivate
       become_user: "{{ user }}"
 
