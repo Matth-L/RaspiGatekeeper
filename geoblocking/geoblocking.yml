@@ -4,6 +4,4 @@
   become: yes
   tasks:
     - name: Apply geoblocking configuration
-      nftables:
-        state: present
-        ruleset: "{{ lookup('file', './geoblocking.conf') }}"
+      command: nft -f ./geoblocking.conf
