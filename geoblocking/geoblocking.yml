@@ -3,5 +3,7 @@
   hosts: all
   become: yes
   tasks:
-  - name: Applying geoblocking conf
-    cmd: nft -f ./geoblocking.conf
+    - name: Apply geoblocking configuration
+      nftables:
+        state: present
+        ruleset: "{{ lookup('file', './geoblocking.conf') }}"
