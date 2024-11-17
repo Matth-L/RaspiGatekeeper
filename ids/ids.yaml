@@ -11,15 +11,15 @@
       ansible.builtin.package:
         name: "{{ item }}"
         state: present
-        loop:
-          - git
-          - python3-venv
-          - libssl-dev
-          - libffi-dev
-          - build-essential
-          - libpython3-dev
-          - python3-minimal
-          - authbind
+      loop:
+        - git
+        - python3-venv
+        - libssl-dev
+        - libffi-dev
+        - build-essential
+        - libpython3-dev
+        - python3-minimal
+        - authbind
 
     - name: Add 'cowrie'
       user:
@@ -41,7 +41,7 @@
       become_user: "{{ user }}"
 
     - name: Sourcing
-      command: source cowrie-env/bin/activate
+      command: source /home/{{ user }}/cowrie/cowrie-env/bin/activate
       become_user: "{{ user }}"
 
     - name: Upgrading pip
