@@ -41,7 +41,7 @@
       become_user: "{{ user }}"
 
     - name: Sourcing
-      command: bash -c "source /home/{{ user }}/cowrie/cowrie-env/bin/activate && python -m pip install --upgrade pip && python -m pip install --upgrade -r requirements.txt"
+      command: bash -c "source /home/{{ user }}/cowrie/cowrie-env/bin/activate && python -m pip install --upgrade pip && python -m pip install --upgrade -r /home/{{ user }}/cowrie/requirements.txt"
       become_user: "{{ user }}"
 
     - name: Leaving the virtual environment
