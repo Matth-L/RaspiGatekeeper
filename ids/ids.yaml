@@ -37,11 +37,11 @@
       become_user: "{{ user }}"
 
     - name: Setting up the virtual environment
-      cmd: python -m venv cowrie-env
+      command: python -m venv cowrie-env
       become_user: "{{ user }}"
 
     - name: Sourcing
-      cmd: source cowrie-env/bin/activate
+      command: source cowrie-env/bin/activate
       become_user: "{{ user }}"
 
     - name: Upgrading pip
@@ -51,13 +51,13 @@
       become_user: "{{ user }}"
 
     - name: Installing pip requirements for IDS
-      cmd: python -m pip install --upgrade -r /home/{{ user }}/cowrie/requirements.txt
+      command: python -m pip install --upgrade -r /home/{{ user }}/cowrie/requirements.txt
       become_user: "{{ user }}"
 
     - name: Leavind the virtual environment
-      cmd: deactivate
+      command: deactivate
       become_user: "{{ user }}"
 
     - name: Launching the honeypot
-      cmd: /home/{{ user }}/cowrie/bin/cowrie start
+      command: /home/{{ user }}/cowrie/bin/cowrie start
       become_user: "{{ user }}"
