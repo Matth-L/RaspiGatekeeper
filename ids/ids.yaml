@@ -1,0 +1,62 @@
+- name: Configure IDS
+  hosts: all
+  become: yes
+  vars:
+    user: cowrie
+    repo: "https://github.com/cowrie/cowrie"
+
+  tasks:
+    - name: Install dependecies
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+        loop:
+          - git
+          - python3-venv
+          - libssl-dev
+          - libffi-dev
+          - build-essential
+          - libpython3-dev
+          - python3-minimal
+          - authbind
+
+    - name: Add 'cowrie'
+      user:
+        name: "{{ user }}"
+        shell: /bin/bash
+        state: present
+        create_home: yes
+
+    - name: Cloning the repo
+      ansible.builtin.git:
+        repo: "{{ repo }}"
+        dest: /home/{{ user }}/cowrie
+        update: yes
+        clone: yes
+      become_user: "{{ user }}"
+
+    - name: Setting up the virtual environment
+      cmd: python -m venv cowrie-env
+      become_user: "{{ user }}"
+
+    - name: Sourcing
+      cmd: source cowrie-env/bin/activate
+      become_user: "{{ user }}"
+
+    - name: Upgrading pip
+      pip:
+        name: pip
+        state: latest
+      become_user: "{{ user }}"
+
+    - name: Installing pip requirements for IDS
+      cmd: python -m pip install --upgrade -r /home/{{ user }}/cowrie/requirements.txt
+      become_user: "{{ user }}"
+
+    - name: Leavind the virtual environment
+      cmd: deactivate
+      become_user: "{{ user }}"
+
+    - name: Launching the honeypot
+      cmd: /home/{{ user }}/cowrie/bin/cowrie start
+      become_user: "{{ user }}"
