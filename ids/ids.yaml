@@ -49,5 +49,5 @@
       become_user: "{{ user }}"
 
     - name: Launching the honeypot
-      command: /home/{{ user }}/cowrie/bin/cowrie start
+      command: bash -c "/home/{{ user }}/cowrie/bin/cowrie start"
       become_user: "{{ user }}"
