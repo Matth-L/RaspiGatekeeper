@@ -1,0 +1,7 @@
+---
+- name: Configure geoblocking with Ansible
+  hosts: all
+  become: yes
+  tasks:
+  - name: Applying geoblocking conf
+    cmd: nft -f ./geoblocking.conf
