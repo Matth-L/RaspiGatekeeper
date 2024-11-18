@@ -3,19 +3,24 @@
   hosts: all
   become: yes
   tasks:
-    - name : Install OpenSSH server
+    - name: Install OpenSSH server
       ansible.builtin.package:
         name: openssh-server
         state: present
         
-    - name: Copying sshd config 
+    - name: Copying sshd config
       ansible.builtin.copy:
         src: ./sshd_config
         dest: /etc/ssh/sshd_config
         mode: "620"
 
-    - name: SSH is enabled and started
+    - name: Enable and start SSH service
       ansible.builtin.systemd:
         name: ssh
         state: started
         enabled: true
+
+    - name: Restart SSH service
+      ansible.builtin.systemd:
+        name: ssh
+        state: restarted
