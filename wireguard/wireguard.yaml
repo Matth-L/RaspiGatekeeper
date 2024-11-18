@@ -1,18 +1,14 @@
 ---
   - name: Installer PiVPN via Ansible
-    hosts: your_host_group
+    hosts: all
     become: yes
-  
     tasks:
+
       - name: Télécharger le script d'installation PiVPN
         ansible.builtin.get_url:
           url: https://install.pivpn.io
           dest: /tmp/install.sh
           mode: '0755'
-  
+
       - name: Exécuter le script d'installation avec des options non-interactives
-        ansible.builtin.shell: |
-          /tmp/install.sh --unattended wireguard.conf
-        args:
-          chdir: /tmp
-  
+        command : /tmp/install.sh --unattended wireguard.conf 
