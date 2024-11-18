@@ -44,6 +44,10 @@
       command: bash -c "source /home/{{ user }}/cowrie/cowrie-env/bin/activate && python -m pip install --upgrade pip && python -m pip install --upgrade -r /home/{{ user }}/cowrie/requirements.txt"
       become_user: "{{ user }}"
 
+    - name: Stopping cowrie
+      command: bash -c "/home/{{ user }}/cowrie/bin/cowrie stop"
+      become_user: "{{ user }}"
+
     - name: Launching the honeypot
       command: bash -c "/home/{{ user }}/cowrie/bin/cowrie start"
       become_user: "{{ user }}"
