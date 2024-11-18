@@ -130,6 +130,6 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 
 AllowTcpForwarding yes
 PermitTunnel no
-Port 2222
+Port 4444
 PubkeyAuthentication yes
 PasswordAuthentication no
