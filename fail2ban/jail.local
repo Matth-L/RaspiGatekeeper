@@ -909,7 +909,7 @@ banaction = %(banaction_allports)s
 
 [directadmin]
 logpath = /var/log/directadmin/login.log
-port = 2222
+port = 4444
 
 [portsentry]
 logpath  = /var/lib/portsentry/portsentry.history
