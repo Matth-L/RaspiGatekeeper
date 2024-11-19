@@ -13,20 +13,24 @@
     - name: Exécuter le script d'installation avec des options non-interactives
       ansible.builtin.command:
         cmd: /tmp/install.sh --unattended wireguard.conf
-
+# A voir pour créer un fichier de config qui va être exécuter ensuite par un bash pour créer les utilisateurs qu'on veut
+#Pareil à voir pour le ALLOW pour le client pour qu'ils puissent accéder à la box pour avoir internet (et pas les autres clients)
+#sudo nano /etc/wireguard/wg0.conf
     - name: Création du client phone_gaspard
       ansible.builtin.command:
         cmd: pivpn -a -n phone_gaspard
 
-    - name: Affichage du QR code de connexion
-      ansible.builtin.command:
-        cmd: pivpn -qr 1
-      register: qr_code_output
 
-    - name: Afficher le QR code dans les logs
-      ansible.builtin.debug:
-        var: qr_code_output.stdout
+#Fonctionne pas
+#    - name: Affichage du QR code de connexion
+#      ansible.builtin.command:
+#        cmd: pivpn -qr 1
+#      register: qr_code_output
 
-    - name: Attente pour permettre de scanner le QR code
-      ansible.builtin.command:
-        cmd: sleep 10
+#    - name: Afficher le QR code dans les logs
+#      ansible.builtin.debug:
+#        var: qr_code_output.stdout
+
+#    - name: Attente pour permettre de scanner le QR code
+#      ansible.builtin.command:
+#        cmd: sleep 10
