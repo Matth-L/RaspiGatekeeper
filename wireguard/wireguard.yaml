@@ -1,23 +1,32 @@
 ---
-  - name: Installer PiVPN via Ansible
-    hosts: all
-    become: yes
-    tasks:
+- name: Installer PiVPN via Ansible
+  hosts: all
+  become: yes
+  tasks:
 
-      - name: Télécharger le script d'installation PiVPN
-        ansible.builtin.get_url:
-          url: https://install.pivpn.io
-          dest: /tmp/install.sh
-          mode: '0755'
+    - name: Télécharger le script d'installation PiVPN
+      ansible.builtin.get_url:
+        url: https://install.pivpn.io
+        dest: /tmp/install.sh
+        mode: '0755'
 
-      - name: Exécuter le script d'installation avec des options non-interactives
-        command : /tmp/install.sh --unattended wireguard.conf 
-      
-      - name : Création du client phone_gaspard
-        command : pivpn -a -n phone_gaspard
+    - name: Exécuter le script d'installation avec des options non-interactives
+      ansible.builtin.command:
+        cmd: /tmp/install.sh --unattended wireguard.conf
 
-      - name : Affichage du qr code de connexion
-        command : pivpn -qr 1
+    - name: Création du client phone_gaspard
+      ansible.builtin.command:
+        cmd: pivpn -a -n phone_gaspard
 
-      - name : Attente pour pouvoir scanner le qr code
-        command : sleep 10
+    - name: Affichage du QR code de connexion
+      ansible.builtin.command:
+        cmd: pivpn -qr 1
+      register: qr_code_output
+
+    - name: Afficher le QR code dans les logs
+      ansible.builtin.debug:
+        var: qr_code_output.stdout
+
+    - name: Attente pour permettre de scanner le QR code
+      ansible.builtin.command:
+        cmd: sleep 10
