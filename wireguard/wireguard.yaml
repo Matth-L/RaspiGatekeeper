@@ -22,7 +22,7 @@
 
     - name: Ajout de l'IP de la box pour les utilisteurs afin qu'ils aient accès à l'internet de la box
       ansible.builtin.command:
-        cmd: sudo addIp.sh
+        cmd: /setup_firewall/wireguard/addIp.sh
 
 
 #Fonctionne pas

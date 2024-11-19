@@ -4,7 +4,7 @@
 WG_CONF="/etc/wireguard/wg0.conf"  # Remplacez wg0.conf par le chemin complet si n  cessaire.
 
 # Adresse IP    ajouter
-NEW_IP="192.168.2.1"
+NEW_IP="192.168.2.1/32"
 
 # V  rifiez si le fichier existe
 if [[ ! -f $WG_CONF ]]; then
