@@ -20,9 +20,10 @@
       ansible.builtin.command:
         cmd: pivpn -a -n phone_gaspard
 
-    - name: Ajout de l'IP de la box pour les utilisteurs afin qu'ils aient accès à l'internet de la box
+    - name: Ajout de l'IP de la box pour les utilisateurs afin qu'ils aient accès à l'internet de la box
       ansible.builtin.command:
-        cmd: /setup_firewall/wireguard/addIp.sh
+        cmd: ./addIp.sh
+        chdir: /setup_firewall/wireguard
 
 
 #Fonctionne pas
