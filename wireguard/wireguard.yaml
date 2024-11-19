@@ -12,3 +12,12 @@
 
       - name: Exécuter le script d'installation avec des options non-interactives
         command : /tmp/install.sh --unattended wireguard.conf 
+      
+      - name : Création du client phone_gaspard
+        command : pivpn -a -n phone_gaspard
+
+      - name : Affichage du qr code de connexion
+        command : pivpn -qr 1
+
+      - name : Attente pour pouvoir scanner le qr code
+        command : sleep 10
