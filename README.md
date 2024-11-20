@@ -63,6 +63,8 @@ This project was a school assignment where we had to do something related to cyb
 We are not professionals in this field and we do not guarantee the security of our project AT ALL.
 Thus, we are not responsible for any damage that could be done to your machine by running our project.
 
+**Do not** run this project on a personal computer, as it may create new users, modify firewall settings, and make other changes to the system configuration.
+
 ## 👥 Authors
 
 - Lapu Matthias 
