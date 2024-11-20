@@ -1,4 +1,4 @@
-# 🔥 setup_pi_firewall
+# 🔥 RaspiGatekeeper     
 
 This project aims to provide a simple way to setup a firewall on a small linux machine (.ie Raspberry Pi). We wanted to create an easy way for people interested in computer security to setup their own router/firewall. Even though we only tested our project on a Raspberry Pi, it should work on any linux machine.
 
@@ -37,13 +37,13 @@ sudo yum install ansible
 To install our project, clone this repo on your machine by doing this command:
 
 ```bash
-git clone 
+git clone https://github.com/Matth-L/RaspiGatekeeper.git
 ```
 
 Then, go to the project directory:
 
 ```bash
-cd 
+cd RaspiGatekeeper
 ```
 
 Finally, run the ansible playbook:
