@@ -26,7 +26,7 @@
     - name: Copying dnsmasq config file
       ansible.builtin.copy:
         src: ./dns_filer.conf
-        dest: /etc/dnsmasq.d/dns_filer.conf
+        dest: /etc/dnsmasq.d/dns_filter.conf
         mode: "620"
 
     - name: Restart dnsmasq service
