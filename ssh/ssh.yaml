@@ -7,7 +7,7 @@
       ansible.builtin.package:
         name: openssh-server
         state: present
-        
+
     - name: Copying sshd config
       ansible.builtin.copy:
         src: ./sshd_config
