@@ -10,3 +10,4 @@
 - import_playbook: ./crontab/crontab.yaml
 - import_playbook: ./geoblocking/geoblocking.yml
 - import_playbook: ./ids/ids.yaml
+- import_playbook: ./dnsmasq/dnsmasq.yml
