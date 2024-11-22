@@ -25,7 +25,7 @@
 
     - name: Copying dnsmasq config file
       ansible.builtin.copy:
-        src: ./dns_filer.conf
+        src: ./dnsmasq.conf
         dest: /etc/dnsmasq.d/dns_filter.conf
         mode: "620"
 
@@ -44,4 +44,4 @@
 
     - name: Add nftables rule to redirect DNS traffic on port 53 to 5353
       command: >
-        nft add rule ip nat PREROUTING udp dport 53 redirect to 5353
+        nft add rule inet basic_configuration prerouting udp dport 53 redirect to 5353
