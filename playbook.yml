@@ -10,6 +10,5 @@
 
 - import_playbook: ./lynis/lynis.yaml
 - import_playbook: ./rkhunter/rkhunter.yaml
-- import_playbook: ./crontab/crontab.yaml
 
 - import_playbook: ./dnsmasq/dnsmasq.yml

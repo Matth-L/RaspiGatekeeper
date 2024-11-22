@@ -8,3 +8,15 @@
         name: lynis
         state: present
         update_cache: yes
+
+    - name : touch log file for lynis
+      ansible.builtin.file:
+        path: /var/log/lynis
+        state: touch
+        mode: u=rw,g=r,o=r
+
+    - name: Copying lynis config file
+      ansible.builtin.copy:
+        src: ./lynis
+        dest: /etc/cron.daily/lynis
+        mode: "620"
