@@ -1,5 +1,5 @@
 ---
-- name: Configure DNS filtering and firewall rules
+- name: Configure dnsmasq, NetworkManager and nftables firewall rules
   hosts: all
   become: true
   tasks:
