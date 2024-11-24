@@ -36,9 +36,9 @@
       name: NetworkManager
       state: restarted
 
-  # Étape 6 : Configuration des règles nftables
+  # Étape 6 : Configuration des règles nftablesn
   - name: Ajouter des règles nftables pour autoriser le DNS
-    command: |
+    shell: |
       sudo nft add rule inet basic_configuration input udp dport 53 accept
       sudo nft add rule inet basic_configuration input tcp dport 53 accept
       sudo nft add rule inet basic_configuration forward udp dport 53 accept

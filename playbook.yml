@@ -1,23 +1,23 @@
 ---
-- import_playbook: ./ssh/ssh.yaml
+- import_playbook: ./ssh/ssh.yml
 
-- import_playbook: ./wireguard/wireguard.yaml
+- import_playbook: ./wireguard/wireguard.yml
 
-- import_playbook: ./fail2ban/fail2ban.yaml
+- import_playbook: ./fail2ban/fail2ban.yml
 
-- import_playbook: ./lynis/lynis.yaml
+- import_playbook: ./lynis/lynis.yml
 
-- import_playbook: ./rkhunter/rkhunter.yaml
+- import_playbook: ./rkhunter/rkhunter.yml
 
 
 
-- import_playbook: ./nftables/nftables.yaml
+- import_playbook: ./nftables/nftables.yml
 
 - import_playbook: ./geoblocking/geoblocking.yml
 
-#- import_playbook: ./dnsmasq/dnsmasq.yml
+- import_playbook: ./dnsmasq/dnsmasq.yml
 
-- import_playbook: ./ids/ids.yaml
+- import_playbook: ./ids/ids.yml
 
 
 
