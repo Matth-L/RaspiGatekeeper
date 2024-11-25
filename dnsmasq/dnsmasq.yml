@@ -6,14 +6,17 @@
 
   # Étape 1 : Désactivation de systemd-resolved
   - name: Désactiver systemd-resolved
-    command: |
+    shell: |
+      sudo systemctl unmask systemd-resolved
+      sudo systemctl enable systemd-resolved
+      sudo systemctl start systemd-resolved
       sudo systemctl stop systemd-resolved
       sudo systemctl disable systemd-resolved
       sudo systemctl mask systemd-resolved
 
   # Étape 2 : Modification de /etc/resolv.conf
   - name: Supprimer et recréer le lien symbolique de resolv.conf
-    command: |
+    shell: |
       sudo rm /etc/resolv.conf
       sudo ln -s /run/NetworkManager/resolv.conf /etc/resolv.conf
 
